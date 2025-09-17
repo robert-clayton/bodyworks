@@ -1,0 +1,22 @@
+{
+  "name": "bodyworks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Workout tracker webapp with video/image upload and social features",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspace @bodyworks/web dev",
+    "build": "yarn workspace @bodyworks/web build",
+    "start": "yarn workspace @bodyworks/web start",
+    "lint": "yarn workspace @bodyworks/web lint",
+    "type-check": "yarn workspace @bodyworks/web type-check"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "packageManager": "yarn@4.9.4"
+}

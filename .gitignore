@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+**/build
+**/out
+**/next-env.d.ts
+**/next.config.mjs
+**/tsconfig.json
+**/tsconfig.node.json
+**/tsconfig.app.json
+**/tsconfig.spec.json
+
+.yarn

@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply h-full bg-background-primary text-text-primary font-sans antialiased;
+    /* Prevent overscroll bounce on mobile */
+    overscroll-behavior: none;
+  }
+
+  /* Mobile-first responsive design */
+  * {
+    @apply touch-manipulation;
+  }
+
+  /* Smooth scrolling */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  /* Primary button - Instagram style */
+  .btn-primary {
+    @apply bg-accent-blue hover:bg-accent-blue/90 
+           text-white font-semibold py-3 px-6 rounded-lg transition-all duration-150 
+           focus:outline-none active:scale-95 transform;
+  }
+  
+  /* Secondary button - Instagram outline style */
+  .btn-secondary {
+    @apply bg-transparent border border-surface-divider hover:bg-surface-primary 
+           text-text-primary font-semibold py-3 px-6 rounded-lg transition-all duration-150 
+           focus:outline-none active:scale-95 transform;
+  }
+
+  /* Tertiary button - Ghost style */
+  .btn-tertiary {
+    @apply bg-transparent hover:bg-surface-primary text-text-secondary hover:text-text-primary 
+           font-medium py-3 px-6 rounded-lg transition-all duration-150 
+           focus:outline-none;
+  }
+
+  /* Input field - Instagram style */
+  .input-field {
+    @apply w-full px-4 py-3 bg-background-secondary border border-surface-border rounded-lg 
+           text-text-primary placeholder-text-muted
+           focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue
+           transition-all duration-150;
+  }
+
+  /* Card component - Instagram style */
+  .card {
+    @apply bg-background-secondary border-0 rounded-none p-0;
+  }
+
+  /* Card with border - For special sections */
+  .card-bordered {
+    @apply bg-background-secondary border border-surface-border rounded-lg p-4;
+  }
+
+  /* Dock navigation - Instagram bottom nav style */
+  .dock-nav {
+    @apply fixed bottom-0 left-0 right-0 pb-safe-bottom
+           bg-background-primary border-t border-surface-border;
+  }
+
+  /* Navigation item */
+  .nav-item {
+    @apply flex flex-col items-center justify-center py-3 px-2 transition-all duration-150;
+  }
+
+  /* Navigation item active */
+  .nav-item-active {
+    @apply text-text-primary;
+  }
+
+  /* Navigation item main (START button) */
+  .nav-item-main {
+    @apply bg-primary-500 text-white rounded-full p-4 shadow-lg
+           hover:bg-primary-600 active:scale-95 transform transition-all duration-150;
+  }
+
+  /* Story/highlight circle */
+  .story-circle {
+    @apply w-16 h-16 rounded-full border-2 border-primary-500 p-0.5;
+  }
+
+  /* Story image */
+  .story-image {
+    @apply w-full h-full rounded-full bg-surface-secondary;
+  }
+
+  /* Post card - Instagram feed style */
+  .post-card {
+    @apply bg-background-primary border-b border-surface-border;
+  }
+
+  /* Post header */
+  .post-header {
+    @apply flex items-center justify-between px-4 py-3;
+  }
+
+  /* Post content */
+  .post-content {
+    @apply px-4 py-2;
+  }
+
+  /* Post actions */
+  .post-actions {
+    @apply flex items-center justify-between px-4 py-3;
+  }
+
+  /* Icon button - Instagram style */
+  .icon-btn {
+    @apply p-2 rounded-full hover:bg-surface-primary transition-colors duration-150 active:scale-95 transform;
+  }
+
+  /* Profile picture */
+  .profile-pic {
+    @apply w-8 h-8 rounded-full bg-surface-secondary;
+  }
+
+  /* Profile picture large */
+  .profile-pic-lg {
+    @apply w-24 h-24 rounded-full bg-surface-secondary;
+  }
+
+  /* Text styles */
+  .text-username {
+    @apply text-text-primary font-semibold text-sm;
+  }
+
+  .text-caption {
+    @apply text-text-primary text-sm;
+  }
+
+  .text-muted {
+    @apply text-text-muted text-xs;
+  }
+
+  /* Divider */
+  .divider {
+    @apply h-px bg-surface-border;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-surface-secondary rounded;
+  }
+}
