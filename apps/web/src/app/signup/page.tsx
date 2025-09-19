@@ -35,15 +35,24 @@ export default function SignUpPage() {
     }
   }
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    console.log('Google sign in clicked')
     setLoading(true)
+    
     try {
+      console.log('Calling signIn.social...')
       const result = await signIn.social({
         provider: 'google',
       })
       
+      console.log('Google sign in result:', result)
+      
       if (result.data) {
         // Successful login - redirect to home
+        console.log('Redirecting to home...')
         window.location.href = '/'
       }
     } catch (error) {
