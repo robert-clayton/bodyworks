@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const handleSignOut = async () => {
     try {
-      const { signOut } = await import('@/lib/auth-client')
+      const { signOut } = await import('../lib/auth-client')
       const result = await signOut()
       console.log('Sign out result:', result)
       setUser(null)

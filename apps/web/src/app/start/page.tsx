@@ -1,6 +1,6 @@
 'use client'
 
-import { DockNavigation } from '@/components/DockNavigation'
+import { DockNavigation } from '../../components/DockNavigation'
 import { ChevronRight, Dumbbell, Clock, Target } from 'lucide-react'
 
 const workoutPrograms = [
