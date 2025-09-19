@@ -1,6 +1,6 @@
 'use client'
 
-import { DockNavigation } from '@/components/DockNavigation'
+import { DockNavigation } from '../../components/DockNavigation'
 import { Users, Heart, MessageCircle, Share, UserPlus } from 'lucide-react'
 
 export default function FeedPage() {

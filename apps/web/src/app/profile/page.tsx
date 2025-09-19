@@ -1,8 +1,8 @@
 'use client'
 
-import { DockNavigation } from '@/components/DockNavigation'
-import { useAuth } from '@/components/AuthProvider'
-import { ProfileImage3XL } from '@/components/ProfileImage'
+import { DockNavigation } from '../../components/DockNavigation'
+import { useAuth } from '../../components/AuthProvider'
+import { ProfileImage3XL } from '../../components/ProfileImage'
 import { Settings, Trophy, Calendar, TrendingUp, LogOut, ChevronRight } from 'lucide-react'
 
 export default function ProfilePage() {

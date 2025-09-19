@@ -1,6 +1,6 @@
 'use client'
 
-import { DockNavigation } from '@/components/DockNavigation'
+import { DockNavigation } from '../../components/DockNavigation'
 import { Search, Camera, Grid3X3, Play } from 'lucide-react'
 
 const exploreContent = [

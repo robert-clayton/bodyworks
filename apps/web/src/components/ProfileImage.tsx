@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { User } from 'lucide-react'
-import { useUser } from '@/hooks/useUser'
+import { useUser } from '../hooks/useUser'
 
 interface ProfileImageProps {
   /** User object containing avatarUrl, image, fullName, and email */

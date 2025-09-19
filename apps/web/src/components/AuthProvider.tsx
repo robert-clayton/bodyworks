@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useSession } from '@/lib/auth-client'
+import { useSession } from '../lib/auth-client'
 
 interface User {
   id: string

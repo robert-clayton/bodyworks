@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { signUp, signIn } from '@/lib/auth-client'
+import { signUp, signIn } from '../../lib/auth-client'
 import { Dumbbell, Mail, Lock, Eye, EyeOff, User } from 'lucide-react'
 import Link from 'next/link'
 

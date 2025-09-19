@@ -1,8 +1,8 @@
 'use client'
 
-import { DockNavigation } from '@/components/DockNavigation'
-import { useAuth } from '@/components/AuthProvider'
-import { ProfileImageMD } from '@/components/ProfileImage'
+import { DockNavigation } from '../components/DockNavigation'
+import { useAuth } from '../components/AuthProvider'
+import { ProfileImageMD } from '../components/ProfileImage'
 import { MessageCircle, Bookmark, MoreHorizontal, Dumbbell, TrendingUp, Heart, Share } from 'lucide-react'
 
 const stories = [
