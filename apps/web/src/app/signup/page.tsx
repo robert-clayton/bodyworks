@@ -8,7 +8,7 @@ import Link from 'next/link'
 export default function SignUpPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [fullName, setFullName] = useState('')
+  const [name, setName] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -20,7 +20,7 @@ export default function SignUpPage() {
       await signUp.email({
         email,
         password,
-        name: fullName,
+        name: name,
       })
     } catch (error) {
       console.error('Sign up error:', error)
@@ -86,8 +86,8 @@ export default function SignUpPage() {
               <User size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted" />
               <input
                 type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Full name"
                 className="input-field pl-10"
                 required
@@ -128,7 +128,7 @@ export default function SignUpPage() {
 
             <button
               type="submit"
-              disabled={loading || !email || !password || !fullName}
+              disabled={loading || !email || !password || !name}
               className="w-full btn-primary"
             >
               {loading ? 'Signing up...' : 'Sign up'}

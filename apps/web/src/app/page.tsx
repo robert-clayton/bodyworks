@@ -57,7 +57,7 @@ export default function HomePage() {
                     />
                   ) : (
                     <ProfileImageMD 
-                      user={{ fullName: story.username }}
+                      user={{ name: story.username }}
                       className="w-full h-full"
                       fallbackBg="bg-gradient-to-br from-surface-secondary to-surface-tertiary"
                     />

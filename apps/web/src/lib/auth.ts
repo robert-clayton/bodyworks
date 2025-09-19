@@ -19,11 +19,11 @@ export const auth = betterAuth({
   
   user: {
     additionalFields: {
-      fullName: {
+      name: {
         type: "string",
         required: false,
       },
-      avatarUrl: {
+      image: {
         type: "string", 
         required: false,
       },
@@ -51,7 +51,7 @@ export const auth = betterAuth({
     useSecureCookies: process.env.NODE_ENV !== 'development',
     crossSubDomainCookies: {
       enabled: process.env.NODE_ENV !== 'development',
-      domain: process.env.NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_BETTER_AUTH_URL : '',
+      domain: process.env.NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_BETTER_AUTH_URL : undefined,
       additionalCookies: [],
     },
     cookieAttributes: {
@@ -70,17 +70,15 @@ export const auth = betterAuth({
           email: user.email,
           name: profile.name,
           picture: profile.picture,
-          currentImage: user.image,
-          currentAvatarUrl: user.avatarUrl
+          currentImage: user.image
         })
         
         // Better Auth automatically sets user.image from Google profile.picture
-        // Copy it to avatarUrl for consistency across our app
-        if (user.image && user.avatarUrl !== user.image) {
+        // Update name if provided
+        if (profile.name && user.name !== profile.name) {
           await auth.api.updateUser({
             body: {
-              avatarUrl: user.image,
-              fullName: profile.name || user.name,
+              name: profile.name,
             },
           })
         }
@@ -101,12 +99,11 @@ export const auth = betterAuth({
         })
         
         // Better Auth automatically sets user.image from Google profile.picture
-        // Copy it to avatarUrl for consistency across our app
-        if (user.image) {
+        // Update name if provided
+        if (profile.name && user.name !== profile.name) {
           await auth.api.updateUser({
             body: {
-              avatarUrl: user.image,
-              fullName: profile.name || user.name,
+              name: profile.name,
             },
           })
         }

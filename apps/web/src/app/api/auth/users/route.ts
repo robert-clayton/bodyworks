@@ -31,8 +31,6 @@ export async function POST(request: NextRequest) {
       email: user.email,
       name: user.name,
       image: user.image,
-      fullName: (user as any).fullName,
-      avatarUrl: (user as any).avatarUrl,
       emailVerified: user.emailVerified,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,

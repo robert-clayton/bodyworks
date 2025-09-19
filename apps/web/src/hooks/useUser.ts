@@ -7,8 +7,6 @@ interface User {
   email: string
   name: string
   image?: string | null
-  fullName?: string | null
-  avatarUrl?: string | null
   emailVerified: boolean
   createdAt: string
   updatedAt: string

@@ -6,13 +6,11 @@ import { User } from 'lucide-react'
 import { useUser } from '../hooks/useUser'
 
 interface ProfileImageProps {
-  /** User object containing avatarUrl, image, fullName, and email */
+  /** User object containing image, name, and email */
   user?: {
-    avatarUrl?: string | null
     image?: string | null
-    fullName?: string | null
-    email?: string | null
     name?: string | null
+    email?: string | null
   } | null
   /** User ID to fetch user data automatically (alternative to user prop) */
   userId?: string | null
@@ -63,8 +61,8 @@ export function ProfileImage({
 
   const initials = getInitials()
   
-  // Determine if we should show the image (check both avatarUrl and image fields)
-  const imageUrl = displayUser?.avatarUrl || displayUser?.image
+  // Determine if we should show the image
+  const imageUrl = displayUser?.image
   const shouldShowImage = imageUrl && !imageError
   
   return (
@@ -79,7 +77,7 @@ export function ProfileImage({
       {shouldShowImage ? (
         <Image
           src={imageUrl}
-          alt={displayUser.fullName || displayUser.name || displayUser.email || 'Profile'}
+          alt={displayUser.name || displayUser.email || 'Profile'}
           width={size}
           height={size}
           className="w-full h-full object-cover"
