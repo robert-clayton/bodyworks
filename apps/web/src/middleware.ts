@@ -13,13 +13,22 @@ export function middleware(request: NextRequest) {
   // Get the session token from cookies
   const token = request.cookies.get('better-auth.session_token')?.value
   
+  // Debug logging for redirects and token presence (visible in Vercel logs)
+  console.log('[middleware]', JSON.stringify({
+    path: pathname,
+    isPublicPath,
+    hasToken: Boolean(token),
+  }))
+  
   // If user is on a public path and has a token, redirect to home
   if (isPublicPath && token) {
+    console.log('[middleware] redirecting to / from public path with token')
     return NextResponse.redirect(new URL('/', request.url))
   }
   
   // If user is not on a public path and doesn't have a token, redirect to login
   if (!isPublicPath && !token) {
+    console.log('[middleware] redirecting to /login (no token on non-public path)')
     return NextResponse.redirect(new URL('/login', request.url))
   }
   
