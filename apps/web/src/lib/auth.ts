@@ -49,10 +49,14 @@ export const auth = betterAuth({
   },
   advanced: {
     useSecureCookies: process.env.NODE_ENV !== 'development',
+    crossSubDomainCookies: {
+      enabled: process.env.NODE_ENV !== 'development',
+      domain: process.env.NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_BETTER_AUTH_URL : '',
+      additionalCookies: [],
+    },
     cookieAttributes: {
       path: '/',
       sameSite: process.env.NODE_ENV === 'development' ? 'lax' : 'none',
-      domain: process.env.NODE_ENV === 'development' ? undefined as unknown as string : '.ziru.link',
     },
   },
   
