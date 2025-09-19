@@ -17,12 +17,18 @@ export default function LoginPage() {
     setLoading(true)
     
     try {
-      await signIn.email({
+      const result = await signIn.email({
         email,
         password,
       })
+      
+      if (result.data) {
+        // Successful login - redirect to home
+        window.location.href = '/'
+      }
     } catch (error) {
       console.error('Sign in error:', error)
+      alert('Login failed. Please check your credentials.')
     } finally {
       setLoading(false)
     }
@@ -31,11 +37,17 @@ export default function LoginPage() {
   const handleGoogleSignIn = async () => {
     setLoading(true)
     try {
-      await signIn.social({
+      const result = await signIn.social({
         provider: 'google',
       })
+      
+      if (result.data) {
+        // Successful login - redirect to home
+        window.location.href = '/'
+      }
     } catch (error) {
       console.error('Google sign in error:', error)
+      alert('Google sign in failed. Please try again.')
     } finally {
       setLoading(false)
     }
