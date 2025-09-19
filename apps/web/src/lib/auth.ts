@@ -47,6 +47,13 @@ export const auth = betterAuth({
       console.error("BetterAuth API error:", e)
     },
   },
+  advanced: {
+    useSecureCookies: process.env.NODE_ENV !== 'development',
+    cookieAttributes: {
+      path: '/',
+      sameSite: 'lax',
+    },
+  },
   
   callbacks: {
     async signIn({ user, account }: { user: any; account?: any }) {
