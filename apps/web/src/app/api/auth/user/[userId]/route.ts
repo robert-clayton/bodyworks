@@ -20,14 +20,12 @@ export async function GET(
       return NextResponse.json({ error: "User ID is required" }, { status: 400 })
     }
 
-    // Get user data from Better Auth
-    const user = await auth.api.getUser({
-      userId,
-    })
-
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 })
+    // Only allow fetching current user's data (Better Auth has no getUser endpoint)
+    if (userId !== session.user.id) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
+
+    const user = session.user
 
     // Return public user information only
     const publicUser = {

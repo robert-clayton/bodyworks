@@ -82,7 +82,7 @@ export default function HomePage() {
                   fallbackIcon={<Dumbbell size={16} className="text-white" />}
                 />
                 <div>
-                  <div className="text-username">{user?.fullName || user?.name || 'BodyWorks'}</div>
+                  <div className="text-username">{user?.name || 'BodyWorks'}</div>
                   <div className="text-muted">Welcome!</div>
                 </div>
               </div>

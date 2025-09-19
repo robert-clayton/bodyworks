@@ -3,7 +3,7 @@ import { Pool } from "pg"
 
 export const auth = betterAuth({
   database: new Pool({
-    connectionString: process.env.DATABASE_URL!,
+    connectionString: process.env.DATABASE_URL_BETTER_AUTH || process.env.DATABASE_URL!,
   }),
   
   emailAndPassword: {
@@ -39,7 +39,7 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET!,
   
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account }: { user: any; account?: any }) {
       // Update user profile with Google data on each sign-in
       if (account?.providerId === "google" && account.profile) {
         const profile = account.profile as any
@@ -56,18 +56,17 @@ export const auth = betterAuth({
         // Copy it to avatarUrl for consistency across our app
         if (user.image && user.avatarUrl !== user.image) {
           await auth.api.updateUser({
-            userId: user.id,
-            data: {
+            body: {
               avatarUrl: user.image,
               fullName: profile.name || user.name,
-            }
+            },
           })
         }
       }
       return true
     },
     
-    async signUp({ user, account }) {
+    async signUp({ user, account }: { user: any; account?: any }) {
       // Set up initial profile with Google data
       if (account?.providerId === "google" && account.profile) {
         const profile = account.profile as any
@@ -83,11 +82,10 @@ export const auth = betterAuth({
         // Copy it to avatarUrl for consistency across our app
         if (user.image) {
           await auth.api.updateUser({
-            userId: user.id,
-            data: {
+            body: {
               avatarUrl: user.image,
               fullName: profile.name || user.name,
-            }
+            },
           })
         }
       }

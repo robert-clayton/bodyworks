@@ -47,14 +47,6 @@ export function ProfileImage({
 
   // Generate initials from name or email
   const getInitials = () => {
-    if (displayUser?.fullName) {
-      return displayUser.fullName
-        .split(' ')
-        .map(n => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2)
-    }
     if (displayUser?.name) {
       return displayUser.name
         .split(' ')

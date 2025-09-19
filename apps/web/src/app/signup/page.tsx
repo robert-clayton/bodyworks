@@ -20,9 +20,7 @@ export default function SignUpPage() {
       await signUp.email({
         email,
         password,
-        data: {
-          fullName,
-        }
+        name: fullName,
       })
     } catch (error) {
       console.error('Sign up error:', error)

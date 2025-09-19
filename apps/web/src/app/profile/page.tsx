@@ -34,7 +34,7 @@ export default function ProfilePage() {
                 className="shadow-lg" 
               />
               <div>
-                <h2 className="text-xl font-bold text-text-primary">{user?.fullName || 'User'}</h2>
+                <h2 className="text-xl font-bold text-text-primary">{user?.name || 'User'}</h2>
                 <p className="text-text-secondary text-sm">{user?.email}</p>
                 <div className="flex items-center mt-2">
                   <div className="w-2 h-2 bg-accent-success rounded-full mr-2"></div>
