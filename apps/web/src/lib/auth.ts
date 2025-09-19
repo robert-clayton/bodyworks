@@ -40,13 +40,57 @@ export const auth = betterAuth({
   
   callbacks: {
     async signIn({ user, account }) {
-      // Custom sign-in logic if needed
+      // Update user profile with Google data on each sign-in
+      if (account?.providerId === "google" && account.profile) {
+        const profile = account.profile as any
+        
+        console.log("Sign-in - Google profile data:", {
+          email: user.email,
+          name: profile.name,
+          picture: profile.picture,
+          currentImage: user.image,
+          currentAvatarUrl: user.avatarUrl
+        })
+        
+        // Better Auth automatically sets user.image from Google profile.picture
+        // Copy it to avatarUrl for consistency across our app
+        if (user.image && user.avatarUrl !== user.image) {
+          await auth.api.updateUser({
+            userId: user.id,
+            data: {
+              avatarUrl: user.image,
+              fullName: profile.name || user.name,
+            }
+          })
+        }
+      }
       return true
     },
     
-    async signUp({ user }) {
-      // Custom sign-up logic - create profile in Supabase
-      console.log("User signed up:", user.email)
+    async signUp({ user, account }) {
+      // Set up initial profile with Google data
+      if (account?.providerId === "google" && account.profile) {
+        const profile = account.profile as any
+        
+        console.log("Sign-up - Google profile data:", {
+          email: user.email,
+          name: profile.name,
+          picture: profile.picture,
+          userImage: user.image
+        })
+        
+        // Better Auth automatically sets user.image from Google profile.picture
+        // Copy it to avatarUrl for consistency across our app
+        if (user.image) {
+          await auth.api.updateUser({
+            userId: user.id,
+            data: {
+              avatarUrl: user.image,
+              fullName: profile.name || user.name,
+            }
+          })
+        }
+      }
       return true
     },
   },

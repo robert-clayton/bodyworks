@@ -2,6 +2,7 @@
 
 import { DockNavigation } from '@/components/DockNavigation'
 import { useAuth } from '@/components/AuthProvider'
+import { ProfileImageMD } from '@/components/ProfileImage'
 import { MessageCircle, Bookmark, MoreHorizontal, Dumbbell, TrendingUp, Heart, Share } from 'lucide-react'
 
 const stories = [
@@ -47,11 +48,20 @@ export default function HomePage() {
             {stories.map((story) => (
               <div key={story.id} className="flex flex-col items-center space-y-1 min-w-0">
                 <div className={`story-circle ${!story.hasStory ? 'border-surface-border' : ''}`}>
-                  <div className="story-image flex items-center justify-center">
-                    {story.username === 'Your Story' && (
-                      <div className="text-text-muted text-2xl">+</div>
-                    )}
-                  </div>
+                  {story.username === 'Your Story' ? (
+                    <ProfileImageMD 
+                      user={user}
+                      className="w-full h-full"
+                      fallbackIcon={<div className="text-text-muted text-2xl">+</div>}
+                      fallbackBg="bg-gradient-to-br from-surface-secondary to-surface-tertiary"
+                    />
+                  ) : (
+                    <ProfileImageMD 
+                      user={{ fullName: story.username }}
+                      className="w-full h-full"
+                      fallbackBg="bg-gradient-to-br from-surface-secondary to-surface-tertiary"
+                    />
+                  )}
                 </div>
                 <span className="text-muted text-xs truncate w-16 text-center">
                   {story.username}
@@ -67,11 +77,12 @@ export default function HomePage() {
           <div className="post-card">
             <div className="post-header">
               <div className="flex items-center space-x-3">
-                <div className="profile-pic bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
-                  <Dumbbell size={16} className="text-white" />
-                </div>
+                <ProfileImageMD 
+                  user={user} 
+                  fallbackIcon={<Dumbbell size={16} className="text-white" />}
+                />
                 <div>
-                  <div className="text-username">BodyWorks</div>
+                  <div className="text-username">{user?.fullName || user?.name || 'BodyWorks'}</div>
                   <div className="text-muted">Welcome!</div>
                 </div>
               </div>

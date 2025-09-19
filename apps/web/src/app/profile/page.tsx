@@ -2,6 +2,7 @@
 
 import { DockNavigation } from '@/components/DockNavigation'
 import { useAuth } from '@/components/AuthProvider'
+import { ProfileImage3XL } from '@/components/ProfileImage'
 import { Settings, Trophy, Calendar, TrendingUp, LogOut, ChevronRight } from 'lucide-react'
 
 export default function ProfilePage() {
@@ -10,10 +11,6 @@ export default function ProfilePage() {
   const handleSignOut = async () => {
     await signOut()
   }
-
-  const userInitials = user?.fullName
-    ? user.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
-    : user?.email?.[0]?.toUpperCase() || 'U'
 
   return (
     <>
@@ -32,9 +29,10 @@ export default function ProfilePage() {
           {/* Profile Card */}
           <div className="card-bordered mb-8">
             <div className="flex items-center space-x-6 mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-2xl font-bold text-white drop-shadow-sm">{userInitials}</span>
-              </div>
+              <ProfileImage3XL 
+                user={user} 
+                className="shadow-lg" 
+              />
               <div>
                 <h2 className="text-xl font-bold text-text-primary">{user?.fullName || 'User'}</h2>
                 <p className="text-text-secondary text-sm">{user?.email}</p>

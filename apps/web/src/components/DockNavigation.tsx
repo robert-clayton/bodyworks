@@ -3,6 +3,8 @@
 import { Home, Search, PlusSquare, Heart, User } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { useAuth } from './AuthProvider'
+import { ProfileImageSM } from './ProfileImage'
 
 const navItems = [
   { href: '/', icon: Home, label: 'Home' },
@@ -14,12 +16,14 @@ const navItems = [
 
 export function DockNavigation() {
   const pathname = usePathname()
+  const { user } = useAuth()
 
   return (
     <nav className="dock-nav">
       <div className="flex items-center justify-around px-4 py-2">
         {navItems.map(({ href, icon: Icon, label, isMain }) => {
           const isActive = pathname === href
+          const isProfileTab = href === '/profile'
           
           return (
             <Link
@@ -34,6 +38,12 @@ export function DockNavigation() {
                 <div className="nav-item-main">
                   <Icon size={24} strokeWidth={2} />
                 </div>
+              ) : isProfileTab ? (
+                <ProfileImageSM 
+                  user={user} 
+                  showActiveRing={isActive}
+                  fallbackIcon={<User size={12} className="text-white" />}
+                />
               ) : (
                 <Icon 
                   size={24} 

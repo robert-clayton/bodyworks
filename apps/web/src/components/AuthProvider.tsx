@@ -6,6 +6,8 @@ import { useSession } from '@/lib/auth-client'
 interface User {
   id: string
   email: string
+  name: string
+  image?: string
   fullName?: string
   avatarUrl?: string
 }
@@ -27,6 +29,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser({
         id: session.user.id,
         email: session.user.email,
+        name: session.user.name,
+        image: session.user.image,
         fullName: session.user.fullName,
         avatarUrl: session.user.avatarUrl,
       })
@@ -36,9 +40,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [session])
 
   const handleSignOut = async () => {
-    const { signOut } = await import('@/lib/auth-client')
-    await signOut()
-    setUser(null)
+    try {
+      const { signOut } = await import('@/lib/auth-client')
+      const result = await signOut()
+      console.log('Sign out result:', result)
+      setUser(null)
+      // Redirect to login after successful sign out
+      window.location.href = '/login'
+    } catch (error) {
+      console.error('Sign out error:', error)
+      // Force redirect even if sign out fails - clear local state anyway
+      setUser(null)
+      window.location.href = '/login'
+    }
   }
 
   return (

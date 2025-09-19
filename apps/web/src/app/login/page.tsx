@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { signIn } from '@/lib/auth-client'
-import { Dumbbell, Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import appIcon from 'public/icon.png'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -47,8 +49,16 @@ export default function LoginPage() {
         <div className="max-w-sm mx-auto w-full">
           {/* Logo */}
           <div className="text-center mb-12">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <Dumbbell size={32} className="text-white" />
+            <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden">
+              <Image
+                src={appIcon}
+                alt="BodyWorks app icon"
+                width={80}
+                height={80}
+                className="w-20 h-20 object-contain"
+                unoptimized
+                priority
+              />
             </div>
             <h1 className="text-2xl font-bold text-text-primary mb-2">BodyWorks</h1>
             <p className="text-text-muted text-sm">Sign up to see photos and videos from your friends.</p>
