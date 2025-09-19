@@ -37,6 +37,16 @@ export const auth = betterAuth({
 
   baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET!,
+  logger: {
+    disabled: false,
+    level: "debug",
+  },
+  onAPIError: {
+    throw: false,
+    onError: (e) => {
+      console.error("BetterAuth API error:", e)
+    },
+  },
   
   callbacks: {
     async signIn({ user, account }: { user: any; account?: any }) {
