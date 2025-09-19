@@ -33,8 +33,6 @@ export async function GET(
       email: user.email,
       name: user.name,
       image: user.image,
-      fullName: user.fullName,
-      avatarUrl: user.avatarUrl,
       emailVerified: user.emailVerified,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
