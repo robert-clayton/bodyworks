@@ -1,6 +1,10 @@
 import { betterAuth } from "better-auth"
 import { Pool } from "pg"
 
+const computedBaseURL =
+  process.env.NEXT_PUBLIC_BETTER_AUTH_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
+
 export const auth = betterAuth({
   database: new Pool({
     connectionString: process.env.DATABASE_URL_BETTER_AUTH || process.env.DATABASE_URL!,
@@ -35,7 +39,7 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 1 day
   },
 
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL: computedBaseURL,
   secret: process.env.BETTER_AUTH_SECRET!,
   
   callbacks: {
