@@ -52,6 +52,7 @@ export const auth = betterAuth({
     cookieAttributes: {
       path: '/',
       sameSite: process.env.NODE_ENV === 'development' ? 'lax' : 'none',
+      domain: process.env.NODE_ENV === 'development' ? undefined as unknown as string : '.ziru.link',
     },
   },
   
